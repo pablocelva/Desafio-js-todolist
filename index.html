@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío To Do List con JavaScript</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <h1>Desafío To Do List en JavaScript</h1>
+    <div class="contenedor">
+        <h2>To Do List</h2>
+        <!-- <hr> -->
+        <div class="contenedor-input">
+            <h5>Nueva Tarea:</h5>
+            <input id="nuevaTarea">
+            <button id="agregarTarea">Agregar</button>
+        </div> 
+        <br>
+        <div class="contenedor-info">
+            <div class="total-tareas">
+                <p>Total: <strong><span id="cuenta-tareas">0</span></strong></p>
+                <p>Realizadas: <strong><span id="cuenta-tareas-realizadas">0</span></strong></p>
+            </div>
+
+            <div class="listado-tareas">
+                <!-- <h4>ID: </h4>
+                <ul id="id"></ul>
+                <h4>Tareas: </h4>
+                <ul id="tareas"></ul> -->
+                <table>
+                    <thead>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </thead>
+                    <tbody id="tareas"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
