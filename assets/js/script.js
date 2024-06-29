@@ -31,10 +31,64 @@ btnAgregar.addEventListener("click", () => {
     renderTareas(tareas)
 })
 
-function renderTareas(tareas){
+//Render de tareas usando .createElement(), .appendChild() y .createDocumentFragment()
+function renderTareas(tareas) {
+    // Limpia el contenido anterior
+    listaDeTareas.innerHTML = ""
+    // Crea un fragmento de documento
+    const fragment = document.createDocumentFragment()
+
+    // Recorre el arreglo de tareas usando for...of
+    for (const tarea of tareas) {
+        // Crea los elementos HTML necesarios
+        const tr = document.createElement("tr")
+
+        const tdId = document.createElement("td")
+        tdId.textContent = tarea.id
+        tr.appendChild(tdId)
+
+        const tdNombre = document.createElement("td")
+        tdNombre.textContent = tarea.nombre
+        tr.appendChild(tdNombre)
+
+        const tdCompleta = document.createElement("td")
+        const checkbox = document.createElement("input")
+        checkbox.type = "checkbox"
+        checkbox.checked = tarea.completa
+        checkbox.addEventListener("click", () => estadoCompletado(tarea.id))
+        tdCompleta.appendChild(checkbox)
+        tr.appendChild(tdCompleta)
+
+        const tdEliminar = document.createElement("td")
+        const button = document.createElement("button")
+        button.textContent = "Eliminar"
+        button.addEventListener("click", () => borrarTarea(tarea.id))
+        tdEliminar.appendChild(button)
+        tr.appendChild(tdEliminar)
+
+        // Añade el tr al fragmento
+        fragment.appendChild(tr)
+    }
+
+    // Añade el fragmento al contenedor de la lista de tareas
+    listaDeTareas.appendChild(fragment)
+
+    // Comprobar actualizaciones del arreglo por consola
+    console.log(tareas)
+
+    // Cuenta y actualiza el total de tareas en la lista
+    cuentaTareas.textContent = `${tareas.length}`
+
+    // Filtra, cuenta y actualiza el total de tareas completas
+    cuentaTareasRealizadas.textContent = `${tareas.filter(t => t.completa).length}`
+}
+
+//Render de tareas con .forEach() y `</html>`
+/*function renderTareas(tareas){
     let html = ""
-    //Recorre arreglo de tareas creando cada una con el siguiente template
+    //Recorre arreglo de tareas usando .forEach()
     tareas.forEach((tarea) => {
+        //Crea los elementos en html con el siguiente template
         html += `
             <tr>
                 <td>${tarea.id}</td>
@@ -55,7 +109,7 @@ function renderTareas(tareas){
 
     //Filtra, cuenta y actualiza el total de tareas completas
     cuentaTareasRealizadas.textContent = `${tareas.filter(t => t.completa).length}` 
-}
+}*/
 
 function estadoCompletado(id) {
     //Busca la tarea por index
